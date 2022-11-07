@@ -12,6 +12,9 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    RELEASE_DIR: ./target
+  env:
+
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -34,4 +37,32 @@ jobs:
 
       - name: Build
         run: mvn clean package
+      
+      - uses: actions/upload-artifact@v2
+      with:
+        name: target
+        path: ${{ env.RELEASE_DIR }}
+        if-no-files-found: error
+
+  
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    step: 
+    - uses: actions/checkout@v3
+
+    - uses: actions/download-artifact@v2
+      with:
+        name: target
+        path: target
+
+    - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: true
+          files: |
+            target/*.jar
+
+    
+
 
