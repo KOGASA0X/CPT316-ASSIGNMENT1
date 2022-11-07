@@ -25,6 +25,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - uses: actions/setup_java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 8
+          cache: 'maven'
+
+      - name: Clean and build
+        run: mvn clean package
+
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
