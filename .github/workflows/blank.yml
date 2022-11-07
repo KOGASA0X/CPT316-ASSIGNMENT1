@@ -32,6 +32,6 @@ jobs:
           java-version: 8
           cache: 'maven'
 
-      - name: Clean and build
-        run: mvn clean package
+      - name: Build
+        run: mvn -B package
 
