@@ -82,4 +82,19 @@ public class Logic {
         return s1.toString();
     }
 
+    boolean comparestr(String s1,String s2)
+    {
+        boolean flag =false;
+
+        for (int i = 0; i < s1.length(); i++) 
+        {
+            if (s1.charAt(i)>s2.charAt(i)) {
+                flag=true;
+                break;
+            }    
+        }
+
+        return flag;
+    }
+
 }
