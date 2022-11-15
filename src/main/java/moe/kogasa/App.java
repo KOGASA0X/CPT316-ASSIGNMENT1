@@ -1,7 +1,5 @@
 package moe.kogasa;
-import javax.swing.*;
-import java.awt.*;
-import java.util.Scanner;
+import java.io.*;
 /**
  * Hello world!
  *
@@ -46,26 +44,43 @@ public class App
         frame.add(panel);
         frame.setVisible(true); */
 
-        System.out.println("Please select mode (1 bubble 2 selection 3 insertion)");
-        Scanner scan = new Scanner(System.in);
+        // System.out.println("Please select mode (1 bubble 2 selection 3 insertion)");
+        // Scanner scan = new Scanner(System.in);
         
-        switch (Integer.valueOf(scan.next())) {
-            case 1:
-                System.out.println("Please key in a String");
-                System.out.println("Mode Bubble "+logic.bubble(scan.next()));
-                break;
-            case 2:
-                System.out.println("Please key in a String");
-                System.out.println("Mode selection "+logic.selection(scan.next()));
-                break;
-            case 3:
-                System.out.println("Please key in a String");
-                System.out.println("Mode insertion "+logic.insertion(scan.next()));
-                break;
+        // switch (Integer.valueOf(scan.next())) {
+        //     case 1:
+        //         System.out.println("Please key in a String");
+        //         System.out.println("Mode Bubble "+logic.bubble(scan.next()));
+        //         break;
+        //     case 2:
+        //         System.out.println("Please key in a String");
+        //         System.out.println("Mode selection "+logic.selection(scan.next()));
+        //         break;
+        //     case 3:
+        //         System.out.println("Please key in a String");
+        //         System.out.println("Mode insertion "+logic.insertion(scan.next()));
+        //         break;
         
-            default:
-                break;
+        //     default:
+        //         break;
+        // }
+        
+        try {
+            BufferedReader readin=new BufferedReader(new FileReader(App.class.getClassLoader().getResource("sgb-words.txt").getPath()));
+            StringBuffer sb;
+            //System.out.println(readin.ready());
+            while (readin.ready()) {
+                sb=(new StringBuffer(readin.readLine()));
+                System.out.println(sb);
+            }
+            readin.close();
+        } catch (IOException e) {
+            // TODO: handle exception
+            System.out.println(e);
         }
+        
+
+
     }
 
 }
