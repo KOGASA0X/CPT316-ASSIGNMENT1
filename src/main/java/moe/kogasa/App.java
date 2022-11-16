@@ -95,18 +95,31 @@ public class App
             if (args.length==0) {
                 throw new ArgsException();
             }
+            long start,end;
             switch (args[0]) {
                 case "bubble":
+                    start=System.nanoTime();
                     sList=logic.bubble(sList);
+                    end=System.nanoTime();
+                    System.out.println("Algorithm: "+args[0]+" Running time: "+(end-start)+"ns");
                     break;
                 case "insertion":
+                    start=System.nanoTime();
                     sList=logic.insertion(sList);
+                    end=System.nanoTime();
+                    System.out.println("Algorithm: "+args[0]+" Running time: "+(end-start)+"ns");
                     break;
                 case "selection":
+                    start=System.nanoTime();
                     sList=logic.selection(sList);
+                    end=System.nanoTime();
+                    System.out.println("Algorithm: "+args[0]+" Running time: "+(end-start)+"ns");
                     break;
                 case "lsd":
+                    start=System.nanoTime();
                     sList=logic.lsd(sList);
+                    end=System.nanoTime();
+                    System.out.println("Algorithm: "+args[0]+" Running time: "+(end-start)+"ns");
                     break;
             
                 default:
