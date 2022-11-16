@@ -9,10 +9,15 @@ public class Logic {
      */
     ArrayList<String> bubble(ArrayList<String> str)
     {
+        //initialize
         boolean flag=true;
+
+        //will try to loop untill list is order
         while (flag) {
             flag =false;
             for (int i = 0; i < str.size()-1; i++) {
+
+                //if current > next then exchange
                 if (str.get(i).compareTo(str.get(i+1))>0) {
                     String c= str.get(i);
                     str.set(i, str.get(i+1));
@@ -31,14 +36,19 @@ public class Logic {
      */
     ArrayList<String> selection(ArrayList<String> disorder)
     {
+        //initialize
         int listsize=disorder.size();
         ArrayList<String> order=new ArrayList<String>();
 
+        //will try to loop untill the elements of "order" is equal disorder
         while(order.size()!=listsize)
         {
             String temp=disorder.get(0);
             int loc=0;
+
             for (int i = 0; i < disorder.size(); i++) {
+
+                
                 if(disorder.get(i).compareTo(temp)<0)
                 {
                     temp=disorder.get(i);
@@ -59,6 +69,7 @@ public class Logic {
      */
     ArrayList<String> insertion(ArrayList<String> str)
     {
+        //initialize
         ArrayList<String> s1=new ArrayList<String>(str);
         for (int i = 1; i < s1.size(); i++)
         {
@@ -67,6 +78,7 @@ public class Logic {
             while(flag)
             {
                 
+                //if s1[loc-1] > s1[loc] then exchange value
                 if(s1.get(loc).compareTo(s1.get(loc-1))<0)
                 {
                     String temp=s1.get(loc);
@@ -105,18 +117,26 @@ public class Logic {
         ArrayList<String> temp=new ArrayList<String>(str);
 
         for (int i = str.get(0).length()-1; i >= 0; i--) {
+            //initialize the key
             key=new int[256];
 
+            //cacluate frequency of word
             for (int j = 0; j < str.size(); j++) {
                 key[str.get(j).charAt(i)+1]++;
             }
+
+            //convert the frequency to Index
             for (int j = 0; j < key.length-1; j++) {
                 //key[j+1]=key[j+1]+key[j];
                 key[j+1]+=key[j];
             }
+
+            //sort the word
             for (int j = 0; j < str.size(); j++) {
                 temp.set(key[str.get(j).charAt(i)]++, str.get(j));
             }
+
+            //return temp to str
             for (int j = 0; j < str.size(); j++) {
                 str.set(j, temp.get(j));
             }
