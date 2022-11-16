@@ -1,9 +1,12 @@
 package moe.kogasa;
-
 import java.util.ArrayList;
 
 public class Logic {
     
+    /**
+     * @param str Get the string array
+     * @return return the order array
+     */
     ArrayList<String> bubble(ArrayList<String> str)
     {
         boolean flag=true;
@@ -22,7 +25,10 @@ public class Logic {
         return str;
     }
 
-
+    /**
+     * @param disorder Get the string array
+     * @return return the order array
+     */
     ArrayList<String> selection(ArrayList<String> disorder)
     {
         int listsize=disorder.size();
@@ -38,6 +44,7 @@ public class Logic {
                     temp=disorder.get(i);
                     loc=i;
                 }
+ 
             }
             disorder.remove(loc);
             order.add(temp);
@@ -46,6 +53,10 @@ public class Logic {
         return order;
     }
 
+    /**
+     * @param str Get the string array
+     * @return return the order array
+     */
     ArrayList<String> insertion(ArrayList<String> str)
     {
         ArrayList<String> s1=new ArrayList<String>(str);
@@ -83,6 +94,48 @@ public class Logic {
         }
         return s1;
     }
+
+    /**
+     * @param str Get the string array
+     * @return return the order array
+     */
+    ArrayList<String> lsd(ArrayList<String> str)
+    {
+        int[] key =new int[256];
+        ArrayList<String> temp=new ArrayList<String>(str);
+
+        for (int i = str.get(0).length()-1; i >= 0; i--) {
+            key=new int[256];
+
+            for (int j = 0; j < str.size(); j++) {
+                key[str.get(j).charAt(i)+1]++;
+            }
+            for (int j = 0; j < key.length-1; j++) {
+                //key[j+1]=key[j+1]+key[j];
+                key[j+1]+=key[j];
+            }
+            for (int j = 0; j < str.size(); j++) {
+                temp.set(key[str.get(j).charAt(i)]++, str.get(j));
+            }
+            for (int j = 0; j < str.size(); j++) {
+                str.set(j, temp.get(j));
+            }
+        }
+
+
+
+
+        return str;
+    }
+
+    ArrayList<String> msd(ArrayList<String> str)
+    {
+
+        
+        return str;
+    }
+
+
 
 /*     boolean comparestr(String s1,String s2)
     {

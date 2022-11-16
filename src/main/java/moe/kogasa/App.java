@@ -6,6 +6,10 @@ import java.util.ArrayList;
  *
  */
 
+/**
+ * @author kogasa
+ * @version 0.1
+ */
 
 public class App 
 {
@@ -88,6 +92,9 @@ public class App
         
 
         try {
+            if (args.length==0) {
+                throw new ArgsException();
+            }
             switch (args[0]) {
                 case "bubble":
                     sList=logic.bubble(sList);
@@ -97,6 +104,9 @@ public class App
                     break;
                 case "selection":
                     sList=logic.selection(sList);
+                    break;
+                case "lsd":
+                    sList=logic.lsd(sList);
                     break;
             
                 default:
@@ -115,8 +125,9 @@ public class App
             }
             
         } catch (Exception e) {
+            e.printStackTrace();
             //System.out.println(null);
-            new ArgsException().printStackTrace();
+            //new ArgsException().printStackTrace();
         }
         
         //System.out.println( "Hello World!" );
