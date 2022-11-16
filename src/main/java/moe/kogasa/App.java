@@ -1,5 +1,6 @@
 package moe.kogasa;
 import java.io.*;
+import java.util.ArrayList;
 /**
  * Hello world!
  *
@@ -11,6 +12,8 @@ public class App
     public static void main( String[] args )
     {
         Logic logic=new Logic();
+        ArrayList<String> sList=new ArrayList<String>();
+
         //String str="1589404u659294437689";
         //System.out.println(logic.insertion(str));
         //System.out.println( "Hello World!" );
@@ -66,12 +69,13 @@ public class App
         // }
         
         try {
-            BufferedReader readin=new BufferedReader(new FileReader(App.class.getClassLoader().getResource("sgb-words.txt").getPath()));
-            StringBuffer sb;
+            BufferedReader readin=new BufferedReader(new InputStreamReader(App.class.getClassLoader().getResourceAsStream("sgb-words.txt")));
+            //StringBuffer sb;
             //System.out.println(readin.ready());
             while (readin.ready()) {
-                sb=(new StringBuffer(readin.readLine()));
-                System.out.println(sb);
+                sList.add(readin.readLine());
+                //sb=(new StringBuffer(readin.readLine()));
+                
             }
             readin.close();
         } catch (IOException e) {
@@ -80,7 +84,42 @@ public class App
         }
         
 
+        //System.out.println(logic.comparestr("ahich", "there"));
+        
 
+        try {
+            switch (args[0]) {
+                case "bubble":
+                    sList=logic.bubble(sList);
+                    break;
+                case "insertion":
+                    sList=logic.insertion(sList);
+                    break;
+                case "selection":
+                    sList=logic.selection(sList);
+                    break;
+            
+                default:
+                throw new ArgsException();     
+            }
+
+            try {
+                BufferedWriter writer=new BufferedWriter(new FileWriter("output.txt"));
+                for (String string : sList) {
+                    writer.write(string+"\n");
+                }
+                writer.close();
+            } catch (IOException e) {
+                // TODO: handle exception
+                System.out.println(e);
+            }
+            
+        } catch (Exception e) {
+            //System.out.println(null);
+            new ArgsException().printStackTrace();
+        }
+        
+        //System.out.println( "Hello World!" );
     }
 
 }
