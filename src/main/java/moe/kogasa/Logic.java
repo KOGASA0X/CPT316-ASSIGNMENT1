@@ -1,6 +1,7 @@
 package moe.kogasa;
 import java.util.ArrayList;
 
+
 public class Logic {
     
     /**
