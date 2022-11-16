@@ -6,7 +6,6 @@ public class Logic {
     
     ArrayList<String> bubble(ArrayList<String> str)
     {
-        int j=0;
         boolean flag=true;
         while (flag) {
             flag =false;
